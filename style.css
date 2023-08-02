@@ -9,17 +9,26 @@
 .calculator {
     height: 70vh;
     width: 60vh;
-    background-color: gray;
+    background-color: rgb(173, 95, 0);
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 30px;
     display: flex;
     flex-direction: column;
     flex: 0 1 auto;
 }
 
 .display {
-    background-color: white;
-    border: 1px solid black;
-    text-align: right;
     flex: 1 1 auto;
+}
+
+.display-screen {
+    height: 90%;
+    text-align: right;
+    background-color: rgba(169, 169, 169, 0.884);
+    margin: 5px;
+    border: 2px solid black;
+    border-radius: 10px;
 }
 
 .button-container {
@@ -27,13 +36,13 @@
     flex: 4 1 auto;
 }
 
-.left-buttons {
+.left-button-container {
     display: flex;
     flex-direction: column;
     flex: 3 1 auto;
 }
 
-.function-buttons {
+.function-container {
     display: flex;
     flex: 1 1 auto;
 }
@@ -49,22 +58,7 @@
     flex: 3 1 auto;
 }
 
-.row1 {
-    display: flex;
-    flex: 1 1 auto;
-}
-
-.row2 {
-    display: flex;
-    flex: 1 1 auto;
-}
-
-.row3 {
-    display: flex;
-    flex: 1 1 auto;
-}
-
-.row4 {
+.num-row {
     display: flex;
     flex: 1 1 auto;
 }
@@ -74,7 +68,7 @@
     flex: 1 1 auto;
 }
 
-.operator-buttons {
+.operator-container {
     display: flex;
     flex-direction: column;
     flex: 1 1 auto;
@@ -87,5 +81,8 @@
 
 button {
     flex: 1 1 0;
+    margin: 5px;
+    border: 2px solid black;
+    border-radius: 10px;
 }
 
