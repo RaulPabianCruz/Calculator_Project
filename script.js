@@ -61,5 +61,9 @@ function updateDisplayScreen(numberString){
     displayScreen.textContent = numberString;
 }
 
+function updateOperatorChosen(operator) {
+    operatorchosen = operator;
+}
+
 
 
