@@ -19,21 +19,25 @@
 }
 
 .display {
-    flex: 1 1 auto;
+    margin: 10px 5px;
+    display: flex;
+    flex: 0 1 auto;
 }
 
 .display-screen {
-    height: 90%;
+    font-size: 125px;
+    font-weight: 500;
     text-align: right;
+    margin: 0px;
     background-color: rgba(169, 169, 169, 0.884);
-    margin: 5px;
     border: 2px solid black;
     border-radius: 10px;
+    flex: 1 1 auto;
 }
 
 .button-container {
     display: flex;
-    flex: 4 1 auto;
+    flex: 5 1 auto;
 }
 
 .left-button-container {
