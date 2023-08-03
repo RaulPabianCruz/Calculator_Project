@@ -39,8 +39,13 @@ function numberButtonPressed(event) {
     updateDisplayValue(number);
 }
 
-function updateDisplayValue(number){
-    displayValue = displayValue + number;
+function updateDisplayValue(numberString){
+    displayValue = displayValue + numberString;
     updateDisplayScreen(displayValue);
+}
+
+function updateDisplayScreen(numberString){
+    let displayScreen = document.querySelector(".display-screen");
+    displayScreen.textContent = numberString;
 }
 
