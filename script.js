@@ -38,14 +38,17 @@ digitButtons.forEach(function(button) {
 
 const operatorButtons = document.querySelectorAll(".operator-button");
 operatorButtons.forEach(function(button) {
-    button.addEventListener("click", function(event) {
-        console.log(event.target.textContent);
-    });
+    button.addEventListener("click", operatorButtonPressed);
 })
 
 function numberButtonPressed(event) {
     let number = Number(event.target.textContent);
     updateDisplayValue(number);
+}
+
+function operatorButtonPressed(event) {
+    let operator = event.target.textContent;
+    updateOperatorChosen(operator);
 }
 
 function updateDisplayValue(numberString){
