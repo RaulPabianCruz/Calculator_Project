@@ -1,4 +1,4 @@
-let displayValue = 0;
+let displayValue = "";
 
 function add(firstNum, secondNum){
     return firstNum + secondNum;
@@ -36,6 +36,11 @@ digitButtons.forEach(function(button) {
 
 function numberButtonPressed(event) {
     let number = Number(event.target.textContent);
-    updateDisplay(number);
+    updateDisplayValue(number);
+}
+
+function updateDisplayValue(number){
+    displayValue = displayValue + number;
+    updateDisplayScreen(displayValue);
 }
 
