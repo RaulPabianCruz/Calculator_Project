@@ -50,8 +50,16 @@ function numberButtonPressed(event) {
 }
 
 function operatorButtonPressed(event) {
-    let operator = event.target.textContent;
-    updateOperatorChosen(operator);
+    if(displayValue != ""){
+        if(operatorChosen != ""){
+            validateExpression();
+        }
+        let operator = event.target.textContent;
+        updateOperatorChosen(operator);
+        console.log(operatorChosen);
+    }
+    else
+        console.log("first operand missing, nothing will be done.");
 }
 
 function updateDisplayValue(numberString){
@@ -65,7 +73,8 @@ function updateDisplayScreen(numberString){
 }
 
 function updateOperatorChosen(operator) {
-    operatorchosen = operator;
+    operatorChosen = operator;
+
 }
 
 function validateExpression() {
@@ -79,7 +88,8 @@ function validateExpression() {
     else{
         let firstNum = Number(firstOperand);
         let secondNum = Number(displayValue);
-        operate(firstNum, operatorChosen, secondNum);
+        let evaluation = operate(firstNum, operatorChosen, secondNum);
+        console.log(evaluation);
     }
 }
 
