@@ -1,4 +1,6 @@
 let displayValue = "";
+let firstOperand = "";
+let operatorChosen = "";
 
 function add(firstNum, secondNum){
     return firstNum + secondNum;
@@ -34,6 +36,13 @@ digitButtons.forEach(function(button) {
     button.addEventListener("click", numberButtonPressed);
 });
 
+const operatorButtons = document.querySelectorAll(".operator-button");
+operatorButtons.forEach(function(button) {
+    button.addEventListener("click", function(event) {
+        console.log(event.target.textContent);
+    });
+})
+
 function numberButtonPressed(event) {
     let number = Number(event.target.textContent);
     updateDisplayValue(number);
@@ -48,4 +57,6 @@ function updateDisplayScreen(numberString){
     let displayScreen = document.querySelector(".display-screen");
     displayScreen.textContent = numberString;
 }
+
+
 
