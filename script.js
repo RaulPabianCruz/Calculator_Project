@@ -18,16 +18,16 @@ function divide(firstNum, secondNum){
     return firstNum / secondNum;
 }
 
-function operate(firstOperand, operator, secondOperand){
+function operate(firstNum, operator, secondNum){
     switch(operator){
         case "+":
-            return add(firstOperand, secondOperand);
+            return add(firstNum, secondNum);
         case "-":
-            return subtract(firstOperand, secondOperand);
+            return subtract(firstNum, secondNum);
         case "*":
-            return multiply(firstOperand, secondOperand);
+            return multiply(firstNum, secondNum);
         case "/": 
-            return divide(firstOperand, secondOperand); 
+            return divide(firstNum, secondNum); 
     }
 }
 
@@ -40,6 +40,9 @@ const operatorButtons = document.querySelectorAll(".operator-button");
 operatorButtons.forEach(function(button) {
     button.addEventListener("click", operatorButtonPressed);
 })
+
+const equalsButton = document.querySelector(".equals-button");
+equalsButton.addEventListener("click", validateExpression);
 
 function numberButtonPressed(event) {
     let number = Number(event.target.textContent);
@@ -65,5 +68,18 @@ function updateOperatorChosen(operator) {
     operatorchosen = operator;
 }
 
-
+function validateExpression() {
+    if(displayValue == "" || firstOperand == "" ||
+            operatorChosen == ""){
+        console.log("one or more values of the expression are empty");
+    }
+    else if(firstOperand == "/" && displayValue == "0"){
+        updateDisplayScreen(">:(")
+    }
+    else{
+        let firstNum = Number(firstOperand);
+        let secondNum = Number(displayValue);
+        operate(firstNum, operatorChosen, secondNum);
+    }
+}
 
