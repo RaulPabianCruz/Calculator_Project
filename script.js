@@ -45,6 +45,8 @@ const equalsButton = document.querySelector(".equals-button");
 equalsButton.addEventListener("click", validateExpression);
 
 function numberButtonPressed(event) {
+    if(operatorChosen != "")
+        clearDisplayValue();
     let number = Number(event.target.textContent);
     updateDisplayValue(number);
 }
@@ -56,7 +58,7 @@ function operatorButtonPressed(event) {
         }
         let operator = event.target.textContent;
         updateOperatorChosen(operator);
-        //console.log(operatorChosen);
+        updateFirstOperand();
     }
     else
         console.log("first operand missing, nothing will be done.");
@@ -80,6 +82,11 @@ function updateOperatorChosen(operator) {
 function clearDisplayValue() {
     displayValue = "";
     updateDisplayScreen(displayValue);
+}
+
+function updateFirstOperand() {
+    firstOperand = displayValue;
+    console.log(firstOperand);
 }
 
 function validateExpression() {
