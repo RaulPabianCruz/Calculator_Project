@@ -1,3 +1,4 @@
+const EMPTY_STRING = "";
 let displayValue = "";
 let firstOperand = "";
 let operatorChosen = "";
@@ -43,6 +44,9 @@ operatorButtons.forEach(function(button) {
 
 const equalsButton = document.querySelector(".equals-button");
 equalsButton.addEventListener("click", validateExpression);
+
+const clearButton = document.querySelector("#clear");
+clearButton.addEventListener("click", clearAllValues);
 
 function numberButtonPressed(event) {
     if(operatorChosen != "")
@@ -101,7 +105,9 @@ function validateExpression() {
         let firstNum = Number(firstOperand);
         let secondNum = Number(displayValue);
         let evaluation = operate(firstNum, operatorChosen, secondNum);
-        console.log(evaluation);
+        clearDisplayValue();
+        updateDisplayValue(evaluation);
+        updateOperatorChosen(EMPTY_STRING);
     }
 }
 
