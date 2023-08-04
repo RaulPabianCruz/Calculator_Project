@@ -1,7 +1,8 @@
 const EMPTY_STRING = "";
-let displayValue = "";
-let firstOperand = "";
-let operatorChosen = "";
+let displayValue = EMPTY_STRING;
+let firstOperand = EMPTY_STRING;
+let operatorChosen = EMPTY_STRING;
+let operatorRecentlyPressed = false;
 
 function add(firstNum, secondNum){
     return firstNum + secondNum;
@@ -49,20 +50,21 @@ const clearButton = document.querySelector("#clear");
 clearButton.addEventListener("click", clearAllValues);
 
 function numberButtonPressed(event) {
-    if(operatorChosen != "")
+    if(isSecondOperandBeginning())
         clearDisplayValue();
     let number = Number(event.target.textContent);
     updateDisplayValue(number);
 }
 
 function operatorButtonPressed(event) {
-    if(displayValue != ""){
-        if(operatorChosen != ""){
+    if(displayValue != EMPTY_STRING){
+        if(operatorChosen != EMPTY_STRING){
             validateExpression();
         }
         let operator = event.target.textContent;
         updateOperatorChosen(operator);
         updateFirstOperand();
+        setOperatorRecentlyPressed();
     }
     else
         console.log("first operand missing, nothing will be done.");
@@ -84,7 +86,7 @@ function updateOperatorChosen(operator) {
 }
 
 function clearDisplayValue() {
-    displayValue = "";
+    displayValue = EMPTY_STRING;
     updateDisplayScreen(displayValue);
 }
 
@@ -103,9 +105,26 @@ function clearFirstOperand() {
     firstOperand = EMPTY_STRING;
 }
 
+function isSecondOperandBeginning() {
+    if(operatorRecentlyPressed){
+        resetOperatorRecentlyPressed();
+        return true;
+    }
+    else
+        return operatorRecentlyPressed;
+}
+
+function setOperatorRecentlyPressed() {
+    operatorRecentlyPressed = true;
+}
+
+function resetOperatorRecentlyPressed() {
+    operatorRecentlyPressed = false;
+}
+
 function validateExpression() {
-    if(displayValue == "" || firstOperand == "" ||
-            operatorChosen == ""){
+    if(displayValue == EMPTY_STRING || firstOperand == EMPTY_STRING ||
+            operatorChosen == EMPTY_STRING){
         console.log("one or more values of the expression are empty");
     }
     else if(firstOperand == "/" && displayValue == "0"){
