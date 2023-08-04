@@ -82,12 +82,19 @@ function updateDisplayScreen(numberString){
 
 function updateOperatorChosen(operator) {
     operatorChosen = operator;
+}
 
+function clearOperatorChosen() {
+    operatorChosen = EMPTY_STRING;
 }
 
 function clearDisplayValue() {
     displayValue = EMPTY_STRING;
-    updateDisplayScreen(displayValue);
+}
+
+function clearDisplayScreen() {
+    let displayScreen = document.querySelector(".display-screen");
+    displayScreen.textContent = EMPTY_STRING;
 }
 
 function updateFirstOperand() {
@@ -97,7 +104,7 @@ function updateFirstOperand() {
 
 function clearAllValues() {
     clearDisplayValue();
-    updateOperatorChosen(EMPTY_STRING);
+    clearOperatorChosen();
     clearFirstOperand();
 }
 
@@ -127,16 +134,18 @@ function validateExpression() {
             operatorChosen == EMPTY_STRING){
         console.log("one or more values of the expression are empty");
     }
-    else if(firstOperand == "/" && displayValue == "0"){
+    else if(displayValue == "0" && operatorChosen == "/"){
         updateDisplayScreen(">:(")
+        clearAllValues();
     }
     else{
         let firstNum = Number(firstOperand);
         let secondNum = Number(displayValue);
         let evaluation = operate(firstNum, operatorChosen, secondNum);
+        clearDisplayScreen();
         clearDisplayValue();
         updateDisplayValue(evaluation);
-        updateOperatorChosen(EMPTY_STRING);
+        clearOperatorChosen();
     }
 }
 
