@@ -56,7 +56,7 @@ function operatorButtonPressed(event) {
         }
         let operator = event.target.textContent;
         updateOperatorChosen(operator);
-        console.log(operatorChosen);
+        //console.log(operatorChosen);
     }
     else
         console.log("first operand missing, nothing will be done.");
@@ -75,6 +75,11 @@ function updateDisplayScreen(numberString){
 function updateOperatorChosen(operator) {
     operatorChosen = operator;
 
+}
+
+function clearDisplayValue() {
+    displayValue = "";
+    updateDisplayScreen(displayValue);
 }
 
 function validateExpression() {
