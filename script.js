@@ -93,6 +93,16 @@ function updateFirstOperand() {
     console.log(firstOperand);
 }
 
+function clearAllValues() {
+    clearDisplayValue();
+    updateOperatorChosen(EMPTY_STRING);
+    clearFirstOperand();
+}
+
+function clearFirstOperand() {
+    firstOperand = EMPTY_STRING;
+}
+
 function validateExpression() {
     if(displayValue == "" || firstOperand == "" ||
             operatorChosen == ""){
