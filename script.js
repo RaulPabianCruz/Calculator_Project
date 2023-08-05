@@ -47,11 +47,13 @@ const equalsButton = document.querySelector(".equals-button");
 equalsButton.addEventListener("click", validateExpression);
 
 const clearButton = document.querySelector("#clear");
-clearButton.addEventListener("click", clearAllValues);
+clearButton.addEventListener("click", clearEverything);
 
 function numberButtonPressed(event) {
-    if(isSecondOperandBeginning())
+    if(wasOperatorRecentlyPressed()){
         clearDisplayValue();
+        resetOperatorRecentlyPressed();
+    }
     let number = Number(event.target.textContent);
     updateDisplayValue(number);
     updateDisplayScreen();
@@ -59,7 +61,8 @@ function numberButtonPressed(event) {
 
 function operatorButtonPressed(event) {
     if(displayValue != EMPTY_STRING){
-        if(operatorChosen != EMPTY_STRING){
+        if(operatorChosen != EMPTY_STRING &&
+                    !wasOperatorRecentlyPressed()){
             validateExpression();
         }
         let operator = event.target.textContent;
@@ -106,13 +109,8 @@ function clearFirstOperand() {
     firstOperand = EMPTY_STRING;
 }
 
-function isSecondOperandBeginning() {
-    if(operatorRecentlyPressed){
-        resetOperatorRecentlyPressed();
-        return true;
-    }
-    else
-        return operatorRecentlyPressed;
+function wasOperatorRecentlyPressed() {
+    return operatorRecentlyPressed;
 }
 
 function setOperatorRecentlyPressed() {
@@ -127,6 +125,11 @@ function clearAllValues() {
     clearDisplayValue();
     clearOperatorChosen();
     clearFirstOperand();
+}
+
+function clearEverything() {
+    clearAllValues();
+    clearDisplayScreen();
 }
 
 function validateExpression() {
