@@ -54,6 +54,7 @@ function numberButtonPressed(event) {
         clearDisplayValue();
     let number = Number(event.target.textContent);
     updateDisplayValue(number);
+    updateDisplayScreen();
 }
 
 function operatorButtonPressed(event) {
@@ -72,12 +73,20 @@ function operatorButtonPressed(event) {
 
 function updateDisplayValue(numberString){
     displayValue = displayValue + numberString;
-    updateDisplayScreen(displayValue);
 }
 
-function updateDisplayScreen(numberString){
+function clearDisplayValue() {
+    displayValue = EMPTY_STRING;
+}
+
+function updateDisplayScreen(){
     let displayScreen = document.querySelector(".display-screen");
-    displayScreen.textContent = numberString;
+    displayScreen.textContent = displayValue;
+}
+
+function clearDisplayScreen() {
+    let displayScreen = document.querySelector(".display-screen");
+    displayScreen.textContent = EMPTY_STRING;
 }
 
 function updateOperatorChosen(operator) {
@@ -88,24 +97,9 @@ function clearOperatorChosen() {
     operatorChosen = EMPTY_STRING;
 }
 
-function clearDisplayValue() {
-    displayValue = EMPTY_STRING;
-}
-
-function clearDisplayScreen() {
-    let displayScreen = document.querySelector(".display-screen");
-    displayScreen.textContent = EMPTY_STRING;
-}
-
 function updateFirstOperand() {
     firstOperand = displayValue;
     console.log(firstOperand);
-}
-
-function clearAllValues() {
-    clearDisplayValue();
-    clearOperatorChosen();
-    clearFirstOperand();
 }
 
 function clearFirstOperand() {
@@ -129,6 +123,12 @@ function resetOperatorRecentlyPressed() {
     operatorRecentlyPressed = false;
 }
 
+function clearAllValues() {
+    clearDisplayValue();
+    clearOperatorChosen();
+    clearFirstOperand();
+}
+
 function validateExpression() {
     if(displayValue == EMPTY_STRING || firstOperand == EMPTY_STRING ||
             operatorChosen == EMPTY_STRING){
@@ -142,9 +142,9 @@ function validateExpression() {
         let firstNum = Number(firstOperand);
         let secondNum = Number(displayValue);
         let evaluation = operate(firstNum, operatorChosen, secondNum);
-        clearDisplayScreen();
         clearDisplayValue();
         updateDisplayValue(evaluation);
+        updateDisplayScreen();
         clearOperatorChosen();
     }
 }
