@@ -152,12 +152,14 @@ function clearEverything() {
 }
 
 function validateExpression() {
-    if(displayValue == EMPTY_STRING || firstOperand == EMPTY_STRING ||
-            operatorChosen == EMPTY_STRING || wasOperatorRecentlyPressed()){
+    if(displayValue === EMPTY_STRING || firstOperand === EMPTY_STRING ||
+            operatorChosen === EMPTY_STRING || wasOperatorRecentlyPressed()){
         console.log("one or more values of the expression are empty");
     }
     else if(displayValue == "0" && operatorChosen == "/"){
-        updateDisplayScreen(">:(")
+        clearDisplayValue();
+        updateDisplayValue(">:(");
+        updateDisplayScreen()
         clearAllExpressionValues();
     }
     else{
