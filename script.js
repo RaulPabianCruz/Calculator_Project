@@ -3,6 +3,7 @@ let displayValue = EMPTY_STRING;
 let firstOperand = EMPTY_STRING;
 let operatorChosen = EMPTY_STRING;
 let operatorRecentlyPressed = false;
+let equalsRecentlyPressed = false;
 
 function add(firstNum, secondNum){
     return firstNum + secondNum;
@@ -121,25 +122,33 @@ function resetOperatorRecentlyPressed() {
     operatorRecentlyPressed = false;
 }
 
-function clearAllValues() {
+function setEqualsRecentlyPressed() {
+    equalsRecentlyPressed = true;
+}
+
+function resetEqualsRecentlyPressed() {
+    equalsRecentlyPressed = false;
+}
+
+function clearAllExpressionValues() {
     clearDisplayValue();
     clearOperatorChosen();
     clearFirstOperand();
 }
 
 function clearEverything() {
-    clearAllValues();
+    clearAllExpressionValues();
     clearDisplayScreen();
 }
 
 function validateExpression() {
     if(displayValue == EMPTY_STRING || firstOperand == EMPTY_STRING ||
-            operatorChosen == EMPTY_STRING){
+            operatorChosen == EMPTY_STRING || wasOperatorRecentlyPressed()){
         console.log("one or more values of the expression are empty");
     }
     else if(displayValue == "0" && operatorChosen == "/"){
         updateDisplayScreen(">:(")
-        clearAllValues();
+        clearAllExpressionValues();
     }
     else{
         let firstNum = Number(firstOperand);
