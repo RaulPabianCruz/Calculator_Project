@@ -45,15 +45,16 @@ operatorButtons.forEach(function(button) {
 })
 
 const equalsButton = document.querySelector(".equals-button");
-equalsButton.addEventListener("click", validateExpression);
+equalsButton.addEventListener("click", equalsButtonPressed);
 
 const clearButton = document.querySelector("#clear");
 clearButton.addEventListener("click", clearEverything);
 
 function numberButtonPressed(event) {
-    if(wasOperatorRecentlyPressed()){
+    if(wasOperatorRecentlyPressed() || wasEqualsRecentlyPressed()){
         clearDisplayValue();
         resetOperatorRecentlyPressed();
+        resetEqualsRecentlyPressed();
     }
     let number = Number(event.target.textContent);
     updateDisplayValue(number);
@@ -73,6 +74,11 @@ function operatorButtonPressed(event) {
     }
     else
         console.log("first operand missing, nothing will be done.");
+}
+
+function equalsButtonPressed() {
+    setEqualsRecentlyPressed();
+    validateExpression();
 }
 
 function updateDisplayValue(numberString){
@@ -120,6 +126,10 @@ function setOperatorRecentlyPressed() {
 
 function resetOperatorRecentlyPressed() {
     operatorRecentlyPressed = false;
+}
+
+function wasEqualsRecentlyPressed() {
+    return equalsRecentlyPressed;
 }
 
 function setEqualsRecentlyPressed() {
