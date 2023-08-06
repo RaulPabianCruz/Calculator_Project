@@ -149,12 +149,14 @@ function clearAllExpressionValues() {
 function clearEverything() {
     clearAllExpressionValues();
     clearDisplayScreen();
+    resetOperatorRecentlyPressed();
 }
 
 function validateExpression() {
     if(displayValue === EMPTY_STRING || firstOperand === EMPTY_STRING ||
             operatorChosen === EMPTY_STRING || wasOperatorRecentlyPressed()){
         console.log("one or more values of the expression are empty");
+        clearEverything();
     }
     else if(displayValue == "0" && operatorChosen == "/"){
         clearDisplayValue();
