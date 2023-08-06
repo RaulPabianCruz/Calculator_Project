@@ -6,19 +6,19 @@ let operatorRecentlyPressed = false;
 let equalsRecentlyPressed = false;
 
 function add(firstNum, secondNum){
-    return firstNum + secondNum;
+    return processResult(firstNum + secondNum);
 }
 
 function subtract(firstNum, secondNum){
-    return firstNum - secondNum;
+    return processResult(firstNum - secondNum);
 }
 
 function multiply(firstNum, secondNum){
-    return firstNum * secondNum;
+    return processResult(firstNum * secondNum);
 }
 
 function divide(firstNum, secondNum){
-    return firstNum / secondNum;
+    return processResult(firstNum / secondNum);
 }
 
 function operate(firstNum, operator, secondNum){
@@ -172,6 +172,15 @@ function validateExpression() {
         updateDisplayValue(evaluation);
         updateDisplayScreen();
         clearOperatorChosen();
+    }
+}
+
+function processResult(resultNumber) {
+    if(Number.isInteger(resultNumber)){
+        return resultNumber;
+    }
+    else{
+        return resultNumber.toFixed(2);
     }
 }
 
